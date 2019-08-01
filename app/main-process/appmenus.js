@@ -170,6 +170,36 @@ function setupMenus(callbacks) {
       ]
     },
     {
+      label: 'Window',
+      role: 'window',
+      submenu: [
+        {
+          label: 'Minimize',
+          accelerator: 'CmdOrCtrl+M',
+          role: 'minimize'
+        },
+        {
+          label: 'Close',
+          accelerator: 'CmdOrCtrl+W',
+          role: 'close'
+        },
+      ]
+    },
+    {
+      label: 'Help',
+      role: 'help',
+      submenu: [
+        {
+          label: 'Show Documentation',
+          click: callbacks.showDocs
+        },
+      ]
+    },
+  ];
+
+  // Basically checks if we're in a dev environment
+  if (process.mainModule.filename.indexOf('app.asar') === -1) {
+    template.push({
       label: '[Inky Debug]',
       submenu: [
         {
@@ -197,34 +227,8 @@ function setupMenus(callbacks) {
           }
         },
       ]
-    },
-    {
-      label: 'Window',
-      role: 'window',
-      submenu: [
-        {
-          label: 'Minimize',
-          accelerator: 'CmdOrCtrl+M',
-          role: 'minimize'
-        },
-        {
-          label: 'Close',
-          accelerator: 'CmdOrCtrl+W',
-          role: 'close'
-        },
-      ]
-    },
-    {
-      label: 'Help',
-      role: 'help',
-      submenu: [
-        {
-          label: 'Show Documentation',
-          click: callbacks.showDocs
-        },
-      ]
-    },
-  ];
+    });
+  }
 
   const name = app.getName();
   const aboutWindowLabel = 'About ' + name;
