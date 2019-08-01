@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const defaults = {
+    theme: 'light'
 };
 
 function Prefs() {
@@ -45,7 +46,9 @@ Prefs.prototype.LoadFromDisk = function() {
 };
 
 Prefs.prototype.Validate = function() {
-    // TODO Implements
+    if (!['light', 'dark'].indexOf(this.data.theme) < 0) {
+        return false;
+    }
     return true;
 };
 
