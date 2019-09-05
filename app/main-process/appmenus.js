@@ -9,14 +9,14 @@ const Preferences = require("./preferences.js").Preferences;
 
 function setupMenus(callbacks) {
   let themes = [];
-  const defaultTheme = Preferences().Get('theme');
+  const defaultTheme = Preferences.Get('view/theme');
   for (const theme of ['light', 'dark']) {
     themes.push({
       label: theme.substring(0, 1).toUpperCase() + theme.substring(1),
       type: 'radio',
       checked: theme === defaultTheme,
       click: () => {
-        Preferences().Set('theme', theme);
+        Preferences.Set('view/theme', theme);
         ProjectWindow.all().forEach(window => window.browserWindow.webContents.send('change-theme', theme));
       }
     });
