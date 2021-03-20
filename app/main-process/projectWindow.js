@@ -8,12 +8,17 @@ const Inklecate = require("./inklecate.js").Inklecate;
 const Menu = electron.Menu;
 
 const electronWindowOptions = {
-  width: 1300,
-  height: 730,
-  minWidth: 350,
-  minHeight: 250,
-  titleBarStyle: 'hidden',
-  title: "Inky"
+    width: 1300,
+    height: 730,
+    minWidth: 350,
+    minHeight: 250,
+    titleBarStyle: "hidden",
+    title: "Inky",
+    webPreferences: {
+        nodeIntegration: true,
+        contextIsolation: false,
+        enableRemoteModule: true,
+    },
 };
 
 var windows = [];

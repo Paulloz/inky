@@ -12,7 +12,12 @@ const electronWindowOptions = {
     resizable: false,
     title: "About Inky",
     show: false,
-    autoHideMenuBar: true
+    autoHideMenuBar: true,
+    webPreferences: {
+        nodeIntegration: true,
+        contextIsolation: false,
+        enableRemoteModule: true,
+    },
 };
 
 const versionFilePath = "ink/version.txt";

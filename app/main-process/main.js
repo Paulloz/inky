@@ -46,6 +46,19 @@ ipc.on("project-cancelled-close", (event) => {
 // Some APIs can only be used after this event occurs.
 app.on('ready', function () {
 
+    electron.session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+        callback({
+            responseHeaders: {
+                ...details.responseHeaders,
+                'Content-Security-Policy': [
+                    "default-src 'self'; " +
+                    "script-src  'self' devtools: 'unsafe-eval'; " +
+                    "style-src   'self' 'unsafe-inline'",
+                ]
+            }
+        });
+    });
+
     app.on('window-all-closed', function () {
         if (process.platform != 'darwin' || isQuitting) {
             app.quit();
